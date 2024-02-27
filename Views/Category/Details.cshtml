@@ -1,0 +1,20 @@
+﻿@model Category
+
+
+<h1>Category Details</h1>
+	
+<table class="table table-bordered table-striped">
+	<tr>
+		<td>Category Name</td>
+		<td>@Model.Name</td>
+	</tr>
+	<br />
+	<tr>
+		<td>Description</td>
+		<td>@Model.Description</td>
+	</tr>
+</table>
+<br />
+<div>
+	<a asp-controller="Category" asp-action="Index"> Back To List</a>
+</div>
