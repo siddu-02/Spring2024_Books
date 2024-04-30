@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Spring2024_Books.Data;
 
@@ -11,9 +12,11 @@ using Spring2024_Books.Data;
 namespace Spring2024_Books.Migrations
 {
     [DbContext(typeof(BooksDBContext))]
-    partial class BooksDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240430025221_addingLast")]
+    partial class addingLast
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

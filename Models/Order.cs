@@ -16,7 +16,7 @@ namespace Spring2024_Books
         public string CustomerName { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
-        public string State { get; set; }
+        public string? State { get; set; }
         public string PostalCode { get; set; }
         public string? Phone { get; set; }
         public decimal OrderTotal { get; set; }

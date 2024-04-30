@@ -11,7 +11,7 @@ namespace Spring2024_Books.Areas.Admin.Controllers
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
 
-    //[Area("Customer")]
+    //Area("Customer")]
     //[Authorize(Roles = "Customer")]
     public class BookController : Controller
     {

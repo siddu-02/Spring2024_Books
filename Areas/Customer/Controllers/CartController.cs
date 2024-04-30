@@ -132,7 +132,7 @@ namespace Spring2024_Books.Areas.Customer.Controllers
             shoppingCartVM.Order.CustomerName = shoppingCartVM.Order.ApplicationUser.Name;
             shoppingCartVM.Order.StreetAddress = shoppingCartVM.Order.ApplicationUser.StreetAddress;
             shoppingCartVM.Order.City = shoppingCartVM.Order.ApplicationUser.City;
-            shoppingCartVM.Order.State = shoppingCartVM.Order.ApplicationUser.State;
+            shoppingCartVM.Order.State = shoppingCartVM.Order.State;
             shoppingCartVM.Order.PostalCode = shoppingCartVM.Order.ApplicationUser.PostalCode;
             shoppingCartVM.Order.Phone = shoppingCartVM.Order.Phone;
 

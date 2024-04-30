@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Spring2024_Books.Data;
 
-namespace Spring2024_Books.Areas.Customer.Controllers
+namespace Spring2024_Books.Areas.Admin.Controllers
 {
-    [Area("Customer")]
-    [Authorize]
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+
     public class UserController : Controller
     {
         private BooksDBContext _dbContext;
@@ -48,7 +49,7 @@ namespace Spring2024_Books.Areas.Customer.Controllers
 
             var userFromDB = _dbContext.ApplicationUsers.Find(id);
 
-            if(userFromDB.LockoutEnd != null&& userFromDB.LockoutEnd> DateTime.Now)
+            if (userFromDB.LockoutEnd != null && userFromDB.LockoutEnd > DateTime.Now)
             {
                 userFromDB.LockoutEnd = DateTime.Now.AddYears(10);
 
@@ -61,7 +62,7 @@ namespace Spring2024_Books.Areas.Customer.Controllers
             }
             _dbContext.SaveChanges();
 
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
         [HttpGet]
 
@@ -89,7 +90,7 @@ namespace Spring2024_Books.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditUserRole(Microsoft.AspNetCore.Identity.IdentityUserRole<string> updatedRole)
+        public IActionResult EditUserRole(IdentityUserRole<string> updatedRole)
         {
             ApplicationUser applicationUser = _dbContext.ApplicationUsers.Find(updatedRole.UserId);
 

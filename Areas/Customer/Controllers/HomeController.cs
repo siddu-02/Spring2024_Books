@@ -9,6 +9,8 @@ using Spring2024_Books.Models;
 namespace Spring2024_Books.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize]
+
 
     public class HomeController : Controller
     {
