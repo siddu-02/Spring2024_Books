@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Spring2024_Books.Data;
 using Spring2024_Books.Models;
 using Spring2024_Books.Models.ViewModels;
@@ -133,10 +134,50 @@ namespace Spring2024_Books.Areas.Admin.Controllers
 
             return View(bookwithCategoriesVM);
         }
+        public IActionResult Details(int id)
+        {
+            Book book = _dbContext.Books
+                                   .Include(b => b.category) // Include the Category if you want to display category details
+                                   .FirstOrDefault(b => b.BookId == id);
 
+            if (book == null)
+            {
+                return NotFound();
+            }
 
+            return View(book);
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Book book = _dbContext.Books.Find(id);
 
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult DeletePOST(int id)
+        {
+            Book book = _dbContext.Books.Find(id);
+
+            if (book != null)
+            {
+                _dbContext.Books.Remove(book);
+                _dbContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
     }
+
+
+
 }
 
