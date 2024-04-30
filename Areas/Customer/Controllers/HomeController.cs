@@ -38,7 +38,7 @@ namespace Spring2024_Books.Areas.Customer.Controllers
 
             _dbContext.Books.Entry(book).Reference(b => b.category).Load();
 
-            //1
+            
              var cart = new Cart
              {
                  BookId = id,
