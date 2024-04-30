@@ -1,0 +1,49 @@
+﻿@model ShoppingCartVM
+
+<form method="post">
+	<div class="card text-center shadow">
+		<div class="row m-3 px-4">
+			<div class="col-12 bg-primary rounded py-2 my-3">
+				<p class="card-title text-white text-start"> Shopping Cart </p>
+			</div>
+
+			<div class="col-12">
+				@foreach (var item in Model.CartItems)
+				{
+					<div class="row border-bottom my-4">
+						<div class="col-2 text-center">
+							<img src="@item.Book.ImgUrl" class="card-img-top rounded" style="width:150px;height:200px" />
+						</div>
+
+						<div class="col-6">
+							<h5>@item.Book.BookTitle</h5>
+							<p><small>@item.Book.Description</small></p>
+						</div>
+
+						<div class="col-2">
+							<div>
+								<h6> @item.Book.Price.ToString("c") &nbsp; x &nbsp;@item.Quantity</h6>
+							</div>
+
+							<div class="btn-group">
+								<a asp-action="IncrementQtyByOne" asp-route-id="@item.CartId" class="btn btn-outline-primary py-2">+&nbsp;</a> &nbsp;&nbsp;
+								<a asp-action="DecrementQtyByOne" asp-route-id="@item.CartId" class="btn btn-outline-primary py-2">&nbsp;-</a>
+							</div>
+							
+							<div class="ms-3">
+								<p class="mb-0">Subtotal:</p>
+								<p class="ms-2 mb-0">@item.Subtotal.ToString("c")</p>
+							</div>
+							<a asp-action="RemoveFromCart" asp-route-id="@item.CartId" class="btn btn-danger ms-3">Remove Item</a>
+							<div>
+								<a asp-action="ReviewOrder" class="btn btn-primary">Review Order</a>
+							</div>
+						</div>
+
+					</div>
+
+				}
+				<div class="col-12 text-end">
+					Order Total : @Model.Order.OrderTotal.ToString("c")
+				</div>
+</form>

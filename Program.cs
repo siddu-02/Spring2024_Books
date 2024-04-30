@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Spring2024_Books.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Spring2024_Books
 {
@@ -19,6 +21,20 @@ namespace Spring2024_Books
             // been fetched in previous step
             builder.Services.AddDbContext<BooksDBContext>(options => options.UseSqlServer(conString));
 
+            builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<BooksDBContext>().AddDefaultTokenProviders();
+           
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            builder.Services.AddRazorPages();
+
+
+
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
 
             var app = builder.Build();
 
@@ -37,9 +53,12 @@ namespace Spring2024_Books
 
             app.UseAuthorization();
 
+            app.UseAuthorization();
+            app.MapRazorPages();
+
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{Area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

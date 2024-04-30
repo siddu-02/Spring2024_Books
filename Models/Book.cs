@@ -18,16 +18,18 @@ namespace Spring2024_Books.Models
 
         public decimal Price { get; set; }
 
-       // public  string? ImgURL { get; set; }
+        public string ISBN { get; set; }
+
+        public string? ImgUrl { get; set; }
 
         //THis is the Foregin key from Category
 
         public int CategoryId { get; set; }
 
         //navagation property
-        [ForeignKey("CategoryID")]
+        [ForeignKey("CategoryId")]
 
-        public Category? category  { get; set; }
+       public Category? category  { get; set; }
 
 
 

@@ -11,12 +11,12 @@ namespace Spring2024_Books.Models
         public int CategoryId { get; set; } //Primary key; System knows because it says "Id". ID being a keyword
 
         [DisplayName("Category Name: ")]
-        [Required(ErrorMessage = "The Name for the Category Must be Required")]
+        [Required(ErrorMessage = "The Name for the Category Must be Required"), MinLength(2, ErrorMessage = "Too short buddy")]
         public string Name { get; set; }
 
         
-        [DisplayName("Category Description: ")]
-        [Required(ErrorMessage = "The Description for the Category Must be Required")]
+        [DisplayName("Category Description:")]
+        [Required(ErrorMessage = "The Description for the Category Must be Required"),]
         public string Description { get; set; }
        
         

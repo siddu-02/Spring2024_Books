@@ -1,0 +1,74 @@
+﻿@model ShoppingCartVM
+<form method="post">
+    <div class="card text-center shadow">
+        <div class="row m-3 px-4">
+            <div class="col-12 bg-primary rounded py-2 my-3">
+                <p class="card-title text-white text-start"> Information about Shipping: </p>
+            </div>
+
+            <div class="col-6">
+                <div class="form-floating mb-1">
+                    <input asp-for="Order.CustomerName" class="form-control" aria-required="true" placeholder="Name" />
+                    <label asp-for="Order.CustomerName"> Customer Name</label>
+                    <span asp-validation-for="Order.CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Order.StreetAddress" class="form-control" aria-required="true" placeholder="Street Address" />
+                    <label asp-for="Order.StreetAddress">Street Address</label>
+                    <span asp-validation-for="Order.StreetAddress" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Order.City" class="form-control" aria-required="true" placeholder="City" />
+                    <label asp-for="Order.City">City</label>
+                    <span asp-validation-for="Order.City" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Order.State" class="form-control" aria-required="true" placeholder="State" />
+                    <label asp-for="Order.State">State</label>
+                    <span asp-validation-for="Order.State" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Order.PostalCode" class="form-control" aria-required="true" placeholder="Postal Code" />
+                    <label asp-for="Order.PostalCode">Postal Code</label>
+                    <span asp-validation-for="Order.PostalCode" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-1">
+                    <input asp-for="Order.Phone" class="form-control" aria-required="true" placeholder="Phone Number" />
+                    <label asp-for="Order.Phone">Phone Number</label>
+                    <span asp-validation-for="Order.Phone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="text-start fw-bold">
+                    Order Details
+                </div>
+                <div class="border rounded">
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <div class="row border-bottom my-4">
+                            <div class="col-6">
+                                <h5>@item.Book.BookTitle</h5>
+                            </div>
+                            <div class="col-3">
+                                <h6>@item.Book.Price.ToString("c") &nbsp; x &nbsp;@item.Quantity</h6>
+                            </div>
+                            <div class="col-3">
+                                <p class="mb-0">Subtotal:</p>
+                                <p class="ms-2 mb-0">@item.Subtotal.ToString("c")</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer bg-black text-white col-12 text-end">
+                    Order total : @Model.Order.OrderTotal.ToString("c")
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
